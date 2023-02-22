@@ -2,7 +2,11 @@ using System.Text;
 
 namespace DependencyInversion
 {
-    public class Logbook
+    public interface ILogbook
+    {
+        void Add(string description);
+    }
+    public class Logbook: ILogbook
     {
         public void Add(string description)
         {

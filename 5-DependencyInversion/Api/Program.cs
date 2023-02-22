@@ -1,3 +1,5 @@
+using DependencyInversion;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -6,6 +8,9 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+// Injectar dependencias en constructor
+builder.Services.AddTransient<IStudentRepository, StudentRepository>();// siempre diferente
+builder.Services.AddScoped<ILogbook, Logbook>();    // siempre el mismo en el mismo request, pero diferente en otros request
 
 var app = builder.Build();
 
